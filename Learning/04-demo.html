@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+
+  <script src="../lib/react/react.development.js"></script>
+  <script src="../lib/react/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+</head>
+<body>
+  
+  <div id="root"></div>
+  <script type="text/babel">
+
+    class HelloWorld extends React.Component{
+      
+      // run order: constructor-render-mount
+
+      constructor(){
+
+        super();
+        console.log('constructor...')
+        console.log('this',this)
+        this.nowTime = new Date().toString()
+      }
+
+      componentDidMount(){
+        setInterval(() => {
+          this.nowTime = new Date().toString()
+          console.log(this.nowTime)
+        }, 1000);
+        
+      }
+
+      componentDidUpdate(){}
+
+      componentWillUnmount(){}
+
+
+      render(){
+        return(
+            <div>
+               <h1>render test</h1>
+               <p>P{this.nowTime}</p>
+            </div>
+       )
+      }
+    }
+
+    // reactdom to render
+    // to update page, reactdom has to be triggered
+
+    ReactDOM.render(<HelloWorld/>, document.getElementById('root'))
+
+    
+  </script>  
+
+</body>
+</html>

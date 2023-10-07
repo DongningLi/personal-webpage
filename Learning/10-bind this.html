@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+
+  <script src="../lib/react/react.development.js"></script>
+  <script src="../lib/react/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+</head>
+<body>
+  
+  <div id="root"></div>
+  <script type="text/babel">
+
+    class HelloWorld extends React.Component{
+
+      constructor(){
+
+        super();
+        this.state = {
+          toggle: true
+        }
+        
+        //bind this for toggle
+        this.handleToggle = this.handleToggle.bind(this)
+      }
+
+      handleToggle(){
+        
+        console.log(this.state.toggle)
+        this.setState((state,props) => ({
+          toggle : !state.toggle
+        }))
+      }
+
+      // or we could use arrow function to save bind
+      handleToggle2 = () => {
+
+        console.log('toggle2', this.state.toggle)
+      }
+
+      handleToggle3 = () => {
+
+        console.log('toggle3', this.state.toggle)
+      }
+
+      render(){
+        return(
+
+          <div>
+            <button onClick = {this.handleToggle}> click: {this.state.toggle?'open':'close'}</button>
+            <button onClick = {this.handleToggle2}> click: {this.state.toggle?'open':'close'}</button>
+            <button onClick = {this.handleToggle3.bind(this)}> click: {this.state.toggle?'open':'close'}</button>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<HelloWorld/>, document.getElementById('root'))
+  </script>  
+
+</body>
+</html>

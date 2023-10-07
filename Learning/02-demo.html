@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+
+  <script src="../lib/react/react.development.js"></script>
+  <script src="../lib/react/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <style>
+    .danger{
+        color:green
+    }
+  </style>
+
+</head>
+<body>
+  
+  <div id="root"></div>
+  <script type="text/babel">
+
+    var msg = 'test work'
+
+    var user = {
+        name:'name',
+        age :18
+
+    }
+
+    var arr = [1,2,3,4]
+
+    var style = {color:'red', fontSize:'20px'}
+
+    class HelloWorld extends React.Component{
+      render(){
+        return(
+            <div>
+                {arr}
+                {
+
+                    Object.keys(user).map(item=>(
+                        <div>{item}:{user[item]}</div>
+                    ))
+                }
+                {/*has to be camel case*/}
+
+                <ul>
+                    <li style = {style}>test</li>
+                    <li className = {'danger'}>test2</li>
+                </ul>
+            </div>
+       )
+      }
+    }
+
+    ReactDOM.render(<HelloWorld/>, document.getElementById('root'))
+  </script>  
+
+</body>
+</html>
